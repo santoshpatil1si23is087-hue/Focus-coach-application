@@ -1,0 +1,341 @@
+/* Glassmorphism & Antigravity (B&W) Design */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+  /* Default: Dark "Antigravity" Mode */
+  --bg-color: #050505;
+  --bg-pattern-color: #222;
+
+  --glass-bg: rgba(20, 20, 20, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-highlight: rgba(255, 255, 255, 0.1);
+
+  --text-main: #ffffff;
+  --text-muted: #888888;
+
+  --primary: #ffffff;
+  --accent: #333333;
+
+  --success: #fff;
+  /* White for focus in B&W theme */
+  --danger: #ffffff;
+  /* White for danger too? Let's use Red for critical alerts still, but maybe muted */
+  --danger-real: #ff4444;
+
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+[data-theme='light'] {
+  --bg-color: #f4f4f5;
+  --bg-pattern-color: #e4e4e7;
+
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-highlight: rgba(0, 0, 0, 0.05);
+
+  --text-main: #18181b;
+  --text-muted: #71717a;
+
+  --primary: #000000;
+  --accent: #e4e4e7;
+
+  --success: #000;
+  --danger: #000;
+  --danger-real: #ef4444;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  /* Dot Grid Pattern */
+  background-image: radial-gradient(var(--bg-pattern-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+
+  color: var(--text-main);
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+}
+
+.ambient-glow {
+  display: none;
+  /* Removed colored blobs for cleaner look */
+}
+
+.app-layout {
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Header */
+.header h1 {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.header p {
+  color: var(--text-muted);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--glass-highlight);
+}
+
+/* HUD System */
+.motivation-hud {
+  position: fixed;
+  top: 1rem;
+  right: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  z-index: 100;
+}
+
+.hud-item {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  /* Sharper corners for B&W tech feel */
+  border: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hud-item .label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+.hud-item .value {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.hud-item .value.active {
+  color: var(--text-main);
+  /* Keep white/black */
+  text-decoration: underline;
+  text-decoration-color: var(--text-muted);
+}
+
+.hud-item .sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Dashboard Cards */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  /* Sharper */
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--text-main);
+}
+
+.glass-card h3 {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin: 0 0 1rem 0;
+}
+
+.glass-card .value {
+  font-size: 3.5rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  letter-spacing: -0.05em;
+  color: var(--text-main);
+}
+
+.glass-card .subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* Webcam Frame */
+.cam-frame {
+  position: relative;
+  padding: 1px;
+  background: var(--glass-border);
+  border-radius: 1rem;
+  box-shadow: 0 20px 50px -20px black;
+  margin-top: 2rem;
+}
+
+.cam-frame.cam-alert {
+  border: 2px solid var(--danger-real);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+  animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.webcam-feed {
+  border-radius: 1rem;
+  display: block;
+  filter: grayscale(100%);
+  /* B&W Camera Feed! */
+}
+
+/* Buttons */
+.btn {
+  padding: 1rem 3rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  border: 1px solid var(--text-main);
+  background: transparent;
+  color: var(--text-main);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+.btn:hover {
+  background: var(--text-main);
+  color: var(--bg-color);
+}
+
+.btn-danger {
+  border-color: var(--danger-real);
+  color: var(--danger-real);
+}
+
+.btn-danger:hover {
+  background: var(--danger-real);
+  color: white;
+}
+
+/* Nudges */
+.nudge-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.nudge-toast {
+  background: var(--text-main);
+  color: var(--bg-color);
+  border: 1px solid var(--text-main);
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* History List */
+.history-section {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 4rem;
+}
+
+.history-section h2 {
+  font-family: var(--font-heading);
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: transparent;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.history-date {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: block;
+}
+
+.history-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.history-score {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.history-score.good {
+  color: var(--text-main);
+}
+
+.history-score.bad {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}

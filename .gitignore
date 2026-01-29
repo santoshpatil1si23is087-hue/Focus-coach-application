@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production
+build/
+dist/
+
+# Misc
+.DS_Store
+.env
+.npm
+*.log
+
+# Project specific
+server/database.json
+server/rewards.json
+
+# IDEs
+.vscode/
+.idea/
