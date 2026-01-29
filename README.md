@@ -1,5 +1,10 @@
 # Distraction Detection & Focus Coaching App .v2 🧠 
 
+[![API Status](https://img.shields.io/badge/API-Online-green)](https://lockin-befocused.onrender.com) 
+[![Frontend Status](https://img.shields.io/badge/Frontend-Deployed-blue)](https://vercel.com)
+
+**Live Demo:** [Click Here to View App](https://vercel.com/dashboard) *(Replace with your specific Vercel URL)*
+
 A full-stack AI Vision app that combines **Distraction Detection** with proper **Pomodoro Techniques**.
 **NEW**: Now features "Antigravity" Design, Smart Pause, and Analytics.
 
